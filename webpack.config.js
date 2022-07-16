@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 const mode = process.env.NODE_ENV || 'development';
@@ -15,6 +16,15 @@ if (isDev) {
   plugins.push(new ReactRefreshWebpackPlugin());
 }
 
+if (!isDev) {
+  plugins.push(
+    new MiniCssExtractPlugin({
+      filename: '[name].[fullhash].css',
+      chunkFilename: '[id].[fullhash].css',
+    })
+  );
+}
+
 module.exports = {
   devServer: {
     hot: true,
@@ -25,6 +35,31 @@ module.exports = {
   mode,
   module: {
     rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              modules: {
+                localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64]',
+              },
+            },
+          },
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              additionalData: '@import "styles/placeholders.scss";@import "styles/variables.scss";',
+              sassOptions: {
+                includePaths: [__dirname, 'src/components'],
+              },
+            },
+          },
+        ],
+      },
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
@@ -48,7 +83,8 @@ module.exports = {
   resolve: {
     alias: {
       components: path.resolve(__dirname, './src/components'),
+      styles: path.resolve(__dirname, './src/styles'),
     },
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss'],
   },
 };
