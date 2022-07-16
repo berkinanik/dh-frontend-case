@@ -35,9 +35,11 @@
     }
   },
   "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/indent": ["error", 2],
+    "indent": "off",
     "no-unused-vars": "off",
     "react/prop-types": "off"
   }

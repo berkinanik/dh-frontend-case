@@ -1,22 +1,22 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const mode = process.env.NODE_ENV || "development";
+const mode = process.env.NODE_ENV || 'development'
 
 const plugins = [
   new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, "./src/index.html"),
-  }),
-];
+    template: path.resolve(__dirname, './src/index.html')
+  })
+]
 
 module.exports = {
   devServer: {
     hot: true,
     open: true,
-    port: 3000,
+    port: 3000
   },
-  entry: path.resolve(__dirname, "./src/index.tsx"),
-  mode: mode,
+  entry: path.resolve(__dirname, './src/index.tsx'),
+  mode,
   module: {
     rules: [
       {
@@ -24,19 +24,19 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader",
-          },
-        ],
-      },
-    ],
+            loader: 'babel-loader'
+          }
+        ]
+      }
+    ]
   },
   output: {
-    path: path.resolve(__dirname, "./build"),
-    filename: "bundle.js",
-    clean: true,
+    path: path.resolve(__dirname, './build'),
+    filename: 'bundle.js',
+    clean: true
   },
-  plugins: plugins,
+  plugins,
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
-  },
-};
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
+  }
+}
