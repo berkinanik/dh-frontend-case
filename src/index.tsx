@@ -1,13 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './components/App'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
-);
+)
 root.render(
   <React.StrictMode>
-    <div>
-      <h1 style={{ color: 'red' }}>DH Frontend Case</h1>
-    </div>
+    <App />
   </React.StrictMode>
-);
+)
