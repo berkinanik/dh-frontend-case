@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 const mode = process.env.NODE_ENV || 'development';
@@ -73,6 +74,10 @@ module.exports = {
         ],
       },
     ],
+  },
+  optimization: {
+    minimize: !isDev,
+    minimizer: [!isDev && new TerserPlugin()].filter(Boolean),
   },
   output: {
     path: path.resolve(__dirname, './build'),
