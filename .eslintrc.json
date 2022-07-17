@@ -57,6 +57,15 @@
     "@typescript-eslint/indent": ["error", 2],
     "indent": "off",
     "no-unused-vars": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "sort-imports": [
+      "error",
+      {
+        "allowSeparatedGroups": true,
+        "ignoreCase": true,
+        "ignoreMemberSort": true,
+        "memberSyntaxSortOrder": ["single", "multiple", "all", "none"]
+      }
+    ]
   }
 }

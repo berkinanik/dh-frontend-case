@@ -1,3 +1,5 @@
+import { Wrapper } from 'layouts/Wrapper';
+
 export const RestaurantDetail: React.FC = () => {
-  return <div>RestaurantDetail</div>;
+  return <Wrapper id="restaurant-detail-wrapper">RestaurantDetail</Wrapper>;
 };

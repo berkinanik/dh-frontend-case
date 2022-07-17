@@ -1,0 +1,13 @@
+.wrapper {
+  width: $wrapperWidth;
+  margin: 0 auto;
+  padding: 0;
+
+  @include phone {
+    width: 100%;
+  }
+
+  @include tablet {
+    width: 100%;
+  }
+}
