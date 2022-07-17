@@ -3,13 +3,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 const mode = process.env.NODE_ENV || 'development';
 
 const plugins = [
+  new CopyPlugin({
+    patterns: [
+      {
+        from: path.resolve(__dirname, './public'),
+        to: path.resolve(__dirname, './build/static'),
+        noErrorOnMissing: true,
+      },
+    ],
+  }),
   new HtmlWebpackPlugin({
     template: path.resolve(__dirname, './src/index.html'),
+    favicon: path.resolve(__dirname, './public/yemeksepeti-logo.ico'),
   }),
 ];
 
@@ -20,8 +31,8 @@ if (isDev) {
 if (!isDev) {
   plugins.push(
     new MiniCssExtractPlugin({
-      filename: '[name].[fullhash].css',
-      chunkFilename: '[id].[fullhash].css',
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css',
     })
   );
 }
@@ -32,10 +43,13 @@ module.exports = {
     open: true,
     port: 3000,
   },
+  devtool: isDev && 'cheap-module-source-map',
   entry: path.resolve(__dirname, './src/index.tsx'),
   mode,
   module: {
     rules: [
+      { test: /\.(?:ico|gif|png|jpe?g)$/i, type: 'asset/resource' },
+      { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
@@ -47,16 +61,24 @@ module.exports = {
               modules: {
                 localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64]',
               },
+              url: false,
             },
           },
-          'postcss-loader',
+          'resolve-url-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              postcssOptions: {
+                plugins: [!isDev && 'postcss-preset-env'].filter(Boolean),
+              },
+            },
+          },
           {
             loader: 'sass-loader',
             options: {
               additionalData: '@import "styles/placeholders.scss";@import "styles/variables.scss";',
-              sassOptions: {
-                includePaths: [__dirname, 'src/components'],
-              },
+              sourceMap: true,
             },
           },
         ],
@@ -80,7 +102,7 @@ module.exports = {
     minimizer: [!isDev && new TerserPlugin()].filter(Boolean),
   },
   output: {
-    path: path.resolve(__dirname, './build'),
+    path: path.resolve(__dirname, './build/static'),
     filename: 'bundle.js',
     clean: true,
   },
@@ -92,4 +114,5 @@ module.exports = {
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss'],
   },
+  target: isDev ? 'web' : 'browserslist',
 };
