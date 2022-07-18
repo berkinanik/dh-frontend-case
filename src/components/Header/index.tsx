@@ -5,8 +5,8 @@ import styles from './Header.module.scss';
 export const Header: React.FC = () => {
   return (
     <header className={styles.header} id="header">
-      <Wrapper id="header-wrapper" className={styles.container}>
-        Yemeksepeti
+      <Wrapper id="header-wrapper">
+        <div className={styles.container}>Yemeksepeti</div>
       </Wrapper>
     </header>
   );
