@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  padding: 12px;
+  background: linear-gradient(272.15deg, rgba(248, 249, 250, 0.0001) 1.84%, #eff0f2 89.87%), url(yemeksepeti-logo.ico),
+    $colorDarkBackground;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: 320px;
+  border: 1px solid $colorBorder;
+  border-radius: $borderRadius;
+  overflow: hidden;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  grid-template-areas:
+    'name name image'
+    'points delivery image';
+  justify-items: flex-start;
+  column-gap: 20px;
+  row-gap: 12px;
+
+  &__logo {
+    width: 86px;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 18px;
+  }
+
+  &__name {
+    grid-area: name;
+    max-width: 320px;
+    line-height: 19px;
+    font-size: 16px;
+  }
+
+  &__points {
+    grid-area: points;
+    display: grid;
+    grid-auto-flow: column dense;
+    grid-auto-columns: auto;
+    column-gap: 5px;
+  }
+
+  &__delivery {
+    grid-area: delivery;
+    display: grid;
+    grid-auto-flow: column dense;
+    grid-auto-columns: auto;
+    column-gap: 12px;
+  }
+}

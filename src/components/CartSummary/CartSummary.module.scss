@@ -1,6 +1,6 @@
 .container {
   border: 1px solid $colorBorder;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 $borderRadius $borderRadius;
   overflow: hidden;
 
   &--on-page {
@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 $cardPadding;
+  padding: 0;
   background: $colorDarkRed;
 
   &--on-page {
@@ -30,7 +30,7 @@
     &--link {
       font-size: 12px;
       text-align: unset;
-      padding: $cardPadding 0;
+      padding: $cardPadding;
 
       &:hover {
         text-decoration: underline;
