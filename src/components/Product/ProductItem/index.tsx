@@ -14,10 +14,15 @@ export const ProductItem: React.FC<ProductItemProps> = ({ title, description, pr
   const [amount, setAmount] = useState(1);
   const amountId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setAmount(1);
     inputRef.current?.blur();
+  };
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(parseInt(e.target.value) || 1);
   };
 
   return (
@@ -27,11 +32,11 @@ export const ProductItem: React.FC<ProductItemProps> = ({ title, description, pr
           ref={inputRef}
           className={styles.actions__input}
           type="number"
-          min={0}
+          min={1}
           max={99}
           id={amountId}
           value={amount}
-          onChange={(e) => setAmount(parseInt(e.target.value))}
+          onChange={onChange}
         />
         <button className={styles.actions__button} type="submit" title="Sepete Ekle">
           +
