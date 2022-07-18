@@ -1,13 +1,14 @@
-import { DefaultLayout } from 'layouts/Default';
-import { RestaurantDetail } from 'pages/RestaurantDetail';
+import { HashRouter } from 'react-router-dom';
+
+import Routes from 'routes';
 
 import 'styles/globals.scss';
 
 const App: React.FC = () => {
   return (
-    <DefaultLayout>
-      <RestaurantDetail />
-    </DefaultLayout>
+    <HashRouter>
+      <Routes />
+    </HashRouter>
   );
 };
 

@@ -113,6 +113,7 @@ module.exports = {
       layouts: path.resolve(__dirname, './src/components/_layouts'),
       lib: path.resolve(__dirname, './src/lib'),
       pages: path.resolve(__dirname, './src/pages'),
+      routes: path.resolve(__dirname, './src/routes'),
       styles: path.resolve(__dirname, './src/styles'),
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss'],
