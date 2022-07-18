@@ -1,6 +1,7 @@
 import { Breadcrumb } from 'components/Breadcrumb';
 
 import { Badge } from 'components/Badge';
+import { formatMoney } from 'utils';
 
 import styles from './RestaurantHeader.module.scss';
 
@@ -38,12 +39,7 @@ export const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({
             <Badge mode="point" value={flavour.toFixed(1).replace('.', ',')} badgeText="Lezzet" />
           </div>
           <div className={styles.details__delivery}>
-            <Badge
-              mode="info"
-              value={minimumPrice.toFixed(2).replace('.', ',') + ' TL'}
-              badgeText="Min. Tutar"
-              icon="icons/min-amount.svg"
-            />
+            <Badge mode="info" value={formatMoney(minimumPrice)} badgeText="Min. Tutar" icon="icons/min-amount.svg" />
             <Badge
               mode="info"
               value={deliveryTime.toFixed(2).replace('.', ',') + ' dk.'}

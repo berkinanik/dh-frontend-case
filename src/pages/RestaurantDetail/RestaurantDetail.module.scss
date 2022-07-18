@@ -8,6 +8,13 @@
   }
 }
 
+.detail {
+  display: grid;
+  grid-auto-flow: row;
+  grid-auto-rows: auto;
+  row-gap: 22px;
+}
+
 .cart {
   display: none;
   position: sticky;

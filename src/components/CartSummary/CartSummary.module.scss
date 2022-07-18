@@ -2,11 +2,6 @@
   border: 1px solid $colorBorder;
   border-radius: 0 0 $borderRadius $borderRadius;
   overflow: hidden;
-
-  &--on-page {
-    background-color: $colorBackground;
-    border: none;
-  }
 }
 
 .header {

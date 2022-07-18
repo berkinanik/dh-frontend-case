@@ -1,4 +1,6 @@
 import cn from 'classnames';
+import { Fragment } from 'react';
+
 import styles from './Breadcrumb.module.scss';
 
 interface BreadcrumbProps {
@@ -10,14 +12,18 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
     const moreThanOneItem = items.length > 1;
     return (
       <>
-        {items.map((item, index) => (
-          <>
-            <li className={cn(styles.item, styles.item__text)} key={item}>
-              {item}
-            </li>
-            {moreThanOneItem && index < items.length - 1 && <span className={styles.item}>{'>'}</span>}
-          </>
-        ))}
+        {items.map((item, index) => {
+          return (
+            <Fragment key={item}>
+              <li className={cn(styles.item, styles.item__text)}>{item}</li>
+              {moreThanOneItem && index < items.length - 1 && (
+                <span className={styles.item} key={`${item}-separator`}>
+                  {'>'}
+                </span>
+              )}
+            </Fragment>
+          );
+        })}
       </>
     );
   };

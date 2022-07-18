@@ -1,0 +1,65 @@
+.container {
+  padding: $cardPadding 15px;
+  border-top: 1px solid $colorBorder;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 10px;
+  align-items: flex-start;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row nowrap;
+  column-gap: 5px;
+
+  &__input {
+    height: 20px;
+    width: 27px;
+    background: $colorWhite;
+    border: 1px solid $colorBorder;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.258823);
+    border-radius: 2px;
+    text-align: center;
+
+    &::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    -moz-appearance: textfield;
+  }
+
+  &__button {
+    background: $colorGreen;
+    color: $colorWhite;
+    display: flex;
+    width: 30px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 2px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  max-width: 480px;
+
+  &__title {
+    color: $colorOrange;
+    font-weight: bold;
+  }
+
+  &__description {
+    color: $colorText;
+  }
+}
+
+.price {
+  color: $colorOrange;
+  font-weight: bold;
+}
