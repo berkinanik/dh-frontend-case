@@ -31,20 +31,20 @@ export const Badge: React.FC<BadgeProps> = ({ mode, badgeText, value, icon }) =>
       case 'point':
         return (
           <>
-            <span className={styles.badge__label}>{badgeText}</span>
-            <span className={styles.badge__point}>{value}</span>
+            <span className={styles.badge__point__label}>{badgeText}</span>
+            <span className={styles.badge__point__value}>{value}</span>
           </>
         );
       case 'info':
         return (
           <>
-            <img className={styles.badge__info__icon} src={icon.toLowerCase()} alt="badge icon" />
+            <img className={styles.badge__info__icon} src={icon} alt="badge icon" />
             <span className={styles.badge__info__label}>{badgeText}</span>
             <span className={styles.badge__info__value}>{value}</span>
           </>
         );
       default:
-        return <img className={styles.badge__icon} src={icon.toLowerCase()} alt="badge icon" />;
+        return <img className={styles.badge__default__icon} src={icon} alt="badge icon" />;
     }
   };
 
