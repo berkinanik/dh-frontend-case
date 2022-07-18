@@ -59,7 +59,7 @@ module.exports = {
             options: {
               importLoaders: 2,
               modules: {
-                localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64]',
+                localIdentName: isDev ? '[path][name]__[local]' : '[name]__[local]',
               },
               url: false,
             },
@@ -70,7 +70,7 @@ module.exports = {
             options: {
               sourceMap: true,
               postcssOptions: {
-                plugins: [!isDev && 'postcss-preset-env'].filter(Boolean),
+                plugins: ['postcss-preset-env'],
               },
             },
           },

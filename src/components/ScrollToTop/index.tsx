@@ -9,7 +9,6 @@ export const ScrollToTop: React.FC<ScrollToTopProps> = ({ children }) => {
   const location = useLocation();
 
   useLayoutEffect(() => {
-    console.log('🚀 ~ file: index.tsx ~ line 14 ~ location', location);
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [location]);
 

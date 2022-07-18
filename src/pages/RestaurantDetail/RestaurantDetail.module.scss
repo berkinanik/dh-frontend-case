@@ -1,12 +1,21 @@
 .container {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
   column-gap: 10px;
+
+  @include desktop {
+    grid-template-columns: auto 1fr;
+  }
 }
 
 .cart {
+  display: none;
   position: sticky;
   top: calc($headerHeight + $contentMarginTop);
   width: 240px;
   height: min-content;
+
+  @include desktop {
+    display: inline-block;
+  }
 }

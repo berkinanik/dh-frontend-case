@@ -57,6 +57,7 @@
     "@typescript-eslint/indent": ["error", 2],
     "indent": "off",
     "no-unused-vars": "off",
+    "no-console": "warn",
     "react/prop-types": "off",
     "sort-imports": [
       "error",

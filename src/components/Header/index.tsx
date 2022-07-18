@@ -12,6 +12,9 @@ export const Header: React.FC = () => {
           <Link to="/">
             <img className={styles.logo} src="images/logo.png" alt="Yemeksepeti Logo" />
           </Link>
+          <Link className={styles.cart} to="/sepet">
+            Sepet
+          </Link>
         </div>
       </Wrapper>
     </header>
