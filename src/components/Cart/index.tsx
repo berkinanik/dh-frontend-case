@@ -1,14 +1,26 @@
 import cn from 'classnames';
 import { Link, useHistory } from 'react-router-dom';
 
-import styles from './CartSummary.module.scss';
+import { CartItem } from './CartItem';
 
-interface CartSummaryProps {
+import styles from './Cart.module.scss';
+
+interface CartProps {
   className?: string;
   onCartPage?: boolean;
 }
 
-export const CartSummary: React.FC<CartSummaryProps> = ({ className, onCartPage = false }) => {
+export const Cart: React.FC<CartProps> = ({ className, onCartPage = false }) => {
+  const cartItems: { id: string; amount: number; name: string; description: string; price: number }[] = [
+    {
+      id: 'asdf',
+      amount: 2,
+      name: 'Hamburger',
+      description:
+        'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
+      price: 12.5,
+    },
+  ];
   const history = useHistory();
   return (
     <section className={cn(styles.container, className)} id="cart-summary">
@@ -35,12 +47,23 @@ export const CartSummary: React.FC<CartSummaryProps> = ({ className, onCartPage 
       </article>
       <article
         className={cn(styles.content__container, {
+          [styles.content__container + '--empty']: cartItems.length === 0,
           [styles.content__container + '--on-page']: onCartPage,
         })}
         id="cart-content"
       >
-        <img src="icons/basket.svg" alt="Basket Icon" width={47} height={37} />
-        <span className={styles.content__empty}>Sepetiniz Henüz Boş</span>
+        {cartItems.length > 0 ? (
+          <ul>
+            {cartItems.map((item) => (
+              <CartItem key={item.id} item={item} />
+            ))}
+          </ul>
+        ) : (
+          <>
+            <img src="icons/basket.svg" alt="Basket Icon" width={47} height={37} />
+            <span className={styles.content__empty}>Sepetiniz Henüz Boş</span>
+          </>
+        )}
       </article>
     </section>
   );

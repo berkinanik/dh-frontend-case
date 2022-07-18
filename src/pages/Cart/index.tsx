@@ -1,10 +1,10 @@
-import { CartSummary } from 'components/CartSummary';
+import { Cart as CartComp } from 'components/Cart';
 import { Wrapper } from 'layouts/Wrapper';
 
 export const Cart: React.FC = () => {
   return (
     <Wrapper>
-      <CartSummary onCartPage />
+      <CartComp onCartPage />
     </Wrapper>
   );
 };

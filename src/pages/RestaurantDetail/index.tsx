@@ -1,4 +1,4 @@
-import { CartSummary } from 'components/CartSummary';
+import { Cart } from 'components/Cart';
 import { ProductItem } from 'components/Product/ProductItem';
 import { ProductList } from 'components/Product/ProductList';
 import { RestaurantHeader } from 'components/RestaurantHeader';
@@ -9,7 +9,7 @@ import styles from './RestaurantDetail.module.scss';
 export const RestaurantDetail: React.FC = () => {
   return (
     <Wrapper id="restaurant-detail-wrapper" className={styles.container}>
-      <CartSummary className={styles.cart} />
+      <Cart className={styles.cart} />
       <section className={styles.detail} id="restaurant-detail">
         <RestaurantHeader
           name="Restaurant Name Restaurant Name Restaurant Name Restaurant Name"
