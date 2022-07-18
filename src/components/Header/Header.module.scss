@@ -8,8 +8,22 @@
 
 .container {
   height: $headerHeight;
-  padding: 21px 0;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: auto;
+  align-items: center;
+  justify-content: flex-start;
+
+  @include phone {
+    height: 40px;
+  }
+}
+
+.logo {
+  height: 42px;
+  width: auto;
+
+  @include phone {
+    height: 24px;
+  }
 }
