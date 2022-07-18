@@ -12,17 +12,22 @@
   border-radius: $borderRadius;
   overflow: hidden;
   margin-bottom: 5px;
+
+  @include phone {
+    background: $colorDarkBackground;
+  }
 }
 
 .details {
   display: grid;
-  grid-template-columns: auto 1fr 1fr;
-  grid-template-areas:
-    'name name image'
-    'points delivery image';
-  justify-items: flex-start;
-  column-gap: 20px;
-  row-gap: 12px;
+  grid-template-columns: auto 1fr;
+  column-gap: 18px;
+
+  @include small-phone {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    justify-items: center;
+  }
 
   &__logo {
     width: 86px;
@@ -30,32 +35,57 @@
     object-fit: contain;
   }
 
-  &__container {
+  &__info {
     display: grid;
     grid-template-columns: auto 1fr;
-    column-gap: 18px;
-  }
+    grid-template-areas:
+      'name image'
+      'badges image';
+    justify-items: flex-start;
+    column-gap: 20px;
+    row-gap: 12px;
 
-  &__name {
-    grid-area: name;
-    max-width: 320px;
-    line-height: 19px;
-    font-size: 16px;
-  }
+    @include phone {
+      grid-template-columns: 1fr;
+      grid-template-areas: 'name' 'badges';
+      justify-items: stretch;
+    }
 
-  &__points {
-    grid-area: points;
-    display: grid;
-    grid-auto-flow: column dense;
-    grid-auto-columns: auto;
-    column-gap: 5px;
-  }
+    &__name {
+      grid-area: name;
+      max-width: 320px;
+      line-height: 19px;
+      font-size: 16px;
 
-  &__delivery {
-    grid-area: delivery;
-    display: grid;
-    grid-auto-flow: column dense;
-    grid-auto-columns: auto;
-    column-gap: 12px;
+      @include phone {
+        max-width: unset;
+        text-align: center;
+      }
+    }
+
+    &__badges {
+      grid-area: badges;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 12px;
+
+      &__points {
+        grid-area: points;
+        display: grid;
+        grid-auto-flow: column dense;
+        grid-auto-columns: auto;
+        column-gap: 5px;
+      }
+
+      &__delivery {
+        grid-area: delivery;
+        display: grid;
+        grid-auto-flow: column dense;
+        grid-auto-columns: auto;
+        column-gap: 12px;
+      }
+    }
   }
 }
