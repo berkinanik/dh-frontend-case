@@ -29,12 +29,7 @@ if (isDev) {
 }
 
 if (!isDev) {
-  plugins.push(
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
-      chunkFilename: '[id].[contenthash].css',
-    })
-  );
+  plugins.push(new MiniCssExtractPlugin());
 }
 
 module.exports = {
