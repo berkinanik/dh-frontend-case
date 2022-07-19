@@ -42,18 +42,6 @@
 
     -moz-appearance: textfield;
   }
-
-  &__button {
-    background: $colorGreen;
-    color: $colorWhite;
-    display: flex;
-    width: 30px;
-    height: 20px;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    border-radius: 2px;
-  }
 }
 
 .info {
@@ -66,7 +54,7 @@
     grid-area: info;
   }
 
-  &__title {
+  &__name {
     color: $colorOrange;
     font-weight: bold;
   }

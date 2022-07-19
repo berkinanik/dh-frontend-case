@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { Link, useHistory } from 'react-router-dom';
 
+import { Button } from 'components/Button';
 import { CartItem } from './CartItem';
 
 import styles from './Cart.module.scss';
@@ -31,9 +32,9 @@ export const Cart: React.FC<CartProps> = ({ className, onCartPage = false }) => 
       >
         {onCartPage ? (
           <>
-            <button type="button" onClick={() => history.goBack()} className={styles.header__back}>
+            <Button className={styles.header__back} type="button" onClick={() => history.goBack()} mode="text">
               {'<'} Geri
-            </button>
+            </Button>
             <h1 className={styles.header__label}>YEMEK SEPETİM</h1>
           </>
         ) : (

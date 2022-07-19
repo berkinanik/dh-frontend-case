@@ -1,3 +1,4 @@
+import { Button } from 'components/Button';
 import { useId, useRef, useState } from 'react';
 
 import { formatMoney } from 'utils';
@@ -5,12 +6,12 @@ import { formatMoney } from 'utils';
 import styles from './ProductItem.module.scss';
 
 export interface ProductItemProps {
-  title: string;
+  name: string;
   description: string;
   price: number;
 }
 
-export const ProductItem: React.FC<ProductItemProps> = ({ title, description, price }) => {
+export const ProductItem: React.FC<ProductItemProps> = ({ name, description, price }) => {
   const [amount, setAmount] = useState(1);
   const amountId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -38,12 +39,12 @@ export const ProductItem: React.FC<ProductItemProps> = ({ title, description, pr
           value={amount}
           onChange={onChange}
         />
-        <button className={styles.actions__button} type="submit" title="Sepete Ekle">
+        <Button mode="primary" size="m" type="button" title={`Sepete Ekle: ${name} (${amount} adet)`}>
           +
-        </button>
+        </Button>
       </form>
       <div className={styles.info}>
-        <span className={styles.info__title}>{title}</span>
+        <span className={styles.info__name}>{name}</span>
         <p className={styles.info__description}>{description}</p>
       </div>
       <div className={styles.price}>{formatMoney(price)}</div>

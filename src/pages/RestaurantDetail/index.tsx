@@ -23,49 +23,49 @@ export const RestaurantDetail: React.FC = () => {
         />
         <ProductList title="Burgerler">
           <ProductItem
-            title="Hamburger"
+            name="Hamburger"
             description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
             price={12.5}
           />
           <ProductItem
-            title="Hamburger"
+            name="Hamburger"
             description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
             price={12.5}
           />
           <ProductItem
-            title="Hamburger"
+            name="Hamburger"
             description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
             price={12.5}
           />
         </ProductList>
         <ProductList title="Burgerler">
           <ProductItem
-            title="Hamburger"
+            name="Hamburger"
             description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
             price={12.5}
           />
           <ProductItem
-            title="Hamburger"
+            name="Hamburger"
             description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
             price={12.5}
           />
           <ProductItem
-            title="Hamburger"
+            name="Hamburger"
             description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
             price={12.5}
           />
           <ProductItem
-            title="Hamburger"
+            name="Hamburger"
             description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
             price={12.5}
           />
           <ProductItem
-            title="Hamburger"
+            name="Hamburger"
             description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
             price={12.5}
           />
           <ProductItem
-            title="Hamburger"
+            name="Hamburger"
             description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
             price={12.5}
           />

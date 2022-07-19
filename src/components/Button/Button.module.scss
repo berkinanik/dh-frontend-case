@@ -1,0 +1,45 @@
+.button {
+  white-space: nowrap;
+  text-align: center;
+  font-weight: 600;
+
+  &--l {
+    font-size: 18px;
+    width: 45px;
+    height: 30px;
+    border-radius: 3px;
+  }
+
+  &--m {
+    font-size: 16px;
+    width: 30px;
+    height: 20px;
+    border-radius: 2px;
+  }
+
+  &--primary {
+    background: $colorGreen;
+    color: $colorWhite;
+    border: none;
+  }
+
+  &--secondary {
+    background: $colorGray;
+    color: $colorText;
+  }
+
+  &--outlined {
+    background: none;
+    color: $colorText;
+    border: 2px solid $colorBorder;
+  }
+
+  &--text {
+    background: none;
+    color: $colorWhite;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
