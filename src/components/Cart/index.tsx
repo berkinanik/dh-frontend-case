@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { Link, useHistory } from 'react-router-dom';
 
 import { Button } from 'components/Button';
-import { CartItem } from './CartItem';
+import { Product } from 'components/Product';
 
 import styles from './Cart.module.scss';
 
@@ -12,13 +12,12 @@ interface CartProps {
 }
 
 export const Cart: React.FC<CartProps> = ({ className, onCartPage = false }) => {
-  const cartItems: { id: string; amount: number; name: string; description: string; price: number }[] = [
+  const cartItems: { id: string; name: string; description: string; price: number }[] = [
     {
       id: 'asdf',
-      amount: 2,
       name: 'Hamburger',
       description:
-        'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
+        'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
       price: 12.5,
     },
   ];
@@ -47,16 +46,16 @@ export const Cart: React.FC<CartProps> = ({ className, onCartPage = false }) => 
         Şişli (Esentepe Mah. - Plazalar.)
       </article>
       <article
-        className={cn(styles.content__container, {
-          [styles.content__container + '--empty']: cartItems.length === 0,
-          [styles.content__container + '--on-page']: onCartPage,
+        className={cn(styles.content, {
+          [styles.content + '--empty']: cartItems.length === 0,
+          [styles.content + '--on-page']: onCartPage,
         })}
         id="cart-content"
       >
         {cartItems.length > 0 ? (
           <ul>
             {cartItems.map((item) => (
-              <CartItem key={item.id} item={item} />
+              <Product key={item.id} item={item} onCart onCartPage={onCartPage} />
             ))}
           </ul>
         ) : (

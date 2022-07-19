@@ -5,7 +5,7 @@ import styles from './Button.module.scss';
 interface ButtonProps {
   children?: React.ReactNode;
   className?: string;
-  onClick?: React.MouseEventHandler;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   mode?: 'primary' | 'secondary' | 'outlined' | 'text';
   size?: 'm' | 'l';
   type?: 'button' | 'submit';

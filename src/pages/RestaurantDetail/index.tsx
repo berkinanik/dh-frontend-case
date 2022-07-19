@@ -1,6 +1,5 @@
 import { Cart } from 'components/Cart';
-import { ProductItem } from 'components/Product/ProductItem';
-import { ProductList } from 'components/Product/ProductList';
+import { Product } from 'components/Product';
 import { RestaurantHeader } from 'components/RestaurantHeader';
 import { Wrapper } from 'layouts/Wrapper';
 
@@ -21,55 +20,73 @@ export const RestaurantDetail: React.FC = () => {
           serving={8.7}
           tags={['İstanbul Yemek Siparişi', 'Burger']}
         />
-        <ProductList title="Burgerler">
-          <ProductItem
-            name="Hamburger"
-            description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
-            price={12.5}
+        <Product.List title="Burgerler">
+          <Product
+            item={{
+              id: Math.random().toString(),
+              name: 'Hamburger',
+              description:
+                'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
+              price: 12.5,
+            }}
           />
-          <ProductItem
-            name="Hamburger"
-            description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
-            price={12.5}
+          <Product
+            item={{
+              id: Math.random().toString(),
+              name: 'Hamburger',
+              description:
+                'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
+              price: 12.5,
+            }}
           />
-          <ProductItem
-            name="Hamburger"
-            description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
-            price={12.5}
+          <Product
+            item={{
+              id: Math.random().toString(),
+              name: 'Hamburger',
+              description:
+                'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
+              price: 12.5,
+            }}
           />
-        </ProductList>
-        <ProductList title="Burgerler">
-          <ProductItem
-            name="Hamburger"
-            description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
-            price={12.5}
+          <Product
+            item={{
+              id: Math.random().toString(),
+              name: 'Hamburger',
+              description:
+                'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
+              price: 12.5,
+            }}
           />
-          <ProductItem
-            name="Hamburger"
-            description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
-            price={12.5}
+          <Product
+            item={{
+              id: Math.random().toString(),
+              name: 'Hamburger',
+              description:
+                'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
+              price: 12.5,
+            }}
           />
-          <ProductItem
-            name="Hamburger"
-            description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
-            price={12.5}
+        </Product.List>
+        <Product.List title="Burgerler">
+          <Product
+            item={{
+              id: Math.random().toString(),
+              name: 'Hamburger',
+              description:
+                'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
+              price: 12.5,
+            }}
           />
-          <ProductItem
-            name="Hamburger"
-            description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
-            price={12.5}
+          <Product
+            item={{
+              id: Math.random().toString(),
+              name: 'Hamburger',
+              description:
+                'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
+              price: 12.5,
+            }}
           />
-          <ProductItem
-            name="Hamburger"
-            description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
-            price={12.5}
-          />
-          <ProductItem
-            name="Hamburger"
-            description="Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)"
-            price={12.5}
-          />
-        </ProductList>
+        </Product.List>
       </section>
     </Wrapper>
   );

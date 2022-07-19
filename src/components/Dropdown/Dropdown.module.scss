@@ -1,0 +1,44 @@
+.dropdown {
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+
+  &[open] > summary::before {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    display: block;
+    cursor: default;
+    content: ' ';
+    background: rgba($colorBlack, 0.4);
+  }
+
+  summary {
+    &::marker {
+      content: none;
+    }
+  }
+
+  &__content {
+    cursor: default;
+    position: absolute;
+    z-index: 20;
+
+    &--bottom {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 10px;
+    }
+
+    &--right {
+      top: 50%;
+      transform: translateY(-50%);
+      left: 100%;
+      margin-left: 10px;
+    }
+  }
+}
