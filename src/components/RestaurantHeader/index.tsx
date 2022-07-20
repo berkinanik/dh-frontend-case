@@ -57,6 +57,7 @@ export const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({
         </div>
       </div>
       <Breadcrumb items={tags} />
+      <div className={styles['background-mask']}></div>
     </header>
   );
 };

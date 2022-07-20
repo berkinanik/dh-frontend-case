@@ -1,20 +1,40 @@
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: 12px;
   padding: 12px;
-  background: linear-gradient(272.15deg, rgba(248, 249, 250, 0.0001) 1.84%, #eff0f2 89.87%), url(yemeksepeti-logo.ico),
-    $colorDarkBackground;
-  background-position: right;
+  background: url(yemeksepeti-logo.ico), $colorDarkBackground;
+  background-position: right center;
   background-repeat: no-repeat;
   background-size: 320px;
   border: 1px solid $colorBorder;
   border-radius: $borderRadius;
   overflow: hidden;
   margin-bottom: 5px;
+  z-index: -3;
 
   @include phone {
     background: $colorDarkBackground;
+  }
+}
+
+.background-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 320px;
+  z-index: -2;
+  border: none;
+  outline: none;
+  background: none;
+  background: -moz-linear-gradient(270deg, rgba(248, 249, 250, 0.01) 0%, rgba(239, 240, 242, 1) 100%);
+  background: -webkit-linear-gradient(270deg, rgba(248, 249, 250, 0.01) 0%, rgba(239, 240, 242, 1) 100%);
+  background: linear-gradient(270deg, rgba(248, 249, 250, 0.01) 0%, rgba(239, 240, 242, 1) 100%);
+
+  @include phone {
+    display: none;
   }
 }
 
@@ -23,6 +43,7 @@
   grid-template-columns: auto 1fr;
   column-gap: 18px;
   background: none;
+  z-index: -1;
 
   @include small-phone {
     grid-template-columns: 1fr;
@@ -34,6 +55,10 @@
     width: 86px;
     height: 100%;
     object-fit: contain;
+
+    @include small-phone {
+      height: auto;
+    }
   }
 
   &__info {
