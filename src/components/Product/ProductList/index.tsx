@@ -2,7 +2,7 @@ import { ProductProps } from '../';
 
 import styles from './ProductList.module.scss';
 
-interface ProductListProps {
+export interface ProductListProps {
   children?: React.ReactElement<ProductProps> | React.ReactElement<ProductProps>[];
   title: string;
 }

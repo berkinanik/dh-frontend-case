@@ -42,22 +42,26 @@
   font-size: 12px;
   background: $colorYellow;
   padding: $cardPadding;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .content {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
-  padding: 21px $cardPadding;
-
-  &--on-page {
-    justify-content: center;
-  }
+  padding: 10px $cardPadding;
 
   &--empty {
+    padding: 21px $cardPadding;
     grid-template-columns: auto auto;
     align-items: center;
     justify-content: flex-start;
+  }
+
+  &--on-page {
+    justify-content: center;
   }
 
   &__empty {

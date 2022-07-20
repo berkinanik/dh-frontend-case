@@ -105,6 +105,7 @@ module.exports = {
   resolve: {
     alias: {
       components: path.resolve(__dirname, './src/components'),
+      context: path.resolve(__dirname, './src/context'),
       layouts: path.resolve(__dirname, './src/components/_layouts'),
       lib: path.resolve(__dirname, './src/lib'),
       pages: path.resolve(__dirname, './src/pages'),

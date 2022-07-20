@@ -4,18 +4,22 @@ import React, { useId, useRef, useState } from 'react';
 import { Button } from 'components/Button';
 import { Dropdown } from 'components/Dropdown';
 import { formatMoney } from 'utils';
-import { ProductList } from './ProductList';
+import { CartActionTypes, useCartContext } from 'context';
+import { ProductList, ProductListProps } from './ProductList';
 
 import styles from './Product.module.scss';
 
 type _commonProps = {
   className?: string;
   item: { id: string; name: string; description: string; price: number };
+  amountOnCart?: number;
+  lastItem?: boolean;
 };
 
 type onCartProps = _commonProps & {
   onCart?: true;
   onCartPage?: boolean;
+  amountOnCart: number;
 };
 
 type onProductListProps = _commonProps & {
@@ -26,22 +30,18 @@ type onProductListProps = _commonProps & {
 export type ProductProps = onCartProps | onProductListProps;
 
 interface ProductSubComponents {
-  List: typeof ProductList;
+  List: React.FC<ProductListProps>;
 }
 
 const Product: React.FC<ProductProps> & ProductSubComponents = ({
   className,
-  item: { id, name, description, price } = {
-    id: 'asdf',
-    name: 'Hamburger',
-    description:
-      'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
-    price: 12.5,
-  }, // todo remove default item
+  item: { id, name, description, price },
   onCart = false,
   onCartPage,
+  amountOnCart,
+  lastItem = false,
 }) => {
-  const amountOnCart = 1; // todo replace with context
+  const { cartDispatch } = useCartContext();
   const [orderAmount, setOrderAmount] = useState(1);
   const formId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -50,14 +50,40 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
     e.preventDefault();
     setOrderAmount(1);
     inputRef.current?.blur();
+    cartDispatch({
+      type: CartActionTypes.ADD_ITEM,
+      payload: {
+        id,
+        name,
+        description,
+        price,
+        amount: orderAmount,
+      },
+    });
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOrderAmount(parseInt(e.target.value) || 1);
   };
 
-  const onRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onRemove = (e: React.MouseEvent<HTMLButtonElement>, removeAll = false) => {
     e.preventDefault();
+    if (removeAll) {
+      cartDispatch({
+        type: CartActionTypes.REMOVE_ITEM_COMPLETELY,
+        payload: {
+          id,
+        },
+      });
+    } else {
+      cartDispatch({
+        type: CartActionTypes.REMOVE_ITEM,
+        payload: {
+          id,
+          amount: orderAmount,
+        },
+      });
+    }
   };
 
   return (
@@ -67,6 +93,7 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
           styles.container,
           {
             [styles.container + '--on-cart']: onCart,
+            [styles.container + '--on-cart--last']: onCart && lastItem,
             [styles.container + '--on-cart--page']: onCartPage,
           },
           className
@@ -145,7 +172,7 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
                     className={styles['cart-actions__remove-all']}
                     type="button"
                     mode="text"
-                    onClick={onRemove}
+                    onClick={(e) => onRemove(e, true)}
                     title={`Sepetten Kaldır: ${name.substring(0, 20)}`}
                   >
                     Sepetten Kaldır
@@ -163,12 +190,14 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
             [styles.price + '--on-cart--page']: onCartPage,
           })}
         >
-          {onCart && amountOnCart > 1 && (
+          {onCart && amountOnCart && amountOnCart > 1 && (
             <span className={styles.price__single}>
               <span className={styles['amount--small-phone']}>x{amountOnCart}</span>({formatMoney(price)})
             </span>
           )}
-          <span className={styles.price__total}>{formatMoney(onCart ? price * amountOnCart : price)}</span>
+          <span className={styles.price__total}>
+            {formatMoney(onCart && amountOnCart ? price * amountOnCart : price)}
+          </span>
         </div>
       </li>
     </>

@@ -1,7 +1,7 @@
 .container {
   list-style: none;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr minmax(60px, auto);
   align-items: flex-start;
   column-gap: 10px;
   padding: $cardPadding 15px;
@@ -10,17 +10,24 @@
   @include small-phone {
     grid-template-columns: 1fr auto;
     grid-template-areas: 'info price' 'info actions';
+    min-height: 100px;
   }
 
   &--on-cart {
     align-items: center;
     column-gap: 5px;
-    border: none;
-    padding: 0;
+    border-top: none;
+    border-bottom: 1px solid $colorBorder;
+    padding: 10px 0;
+    min-height: 60px;
+
+    &--last {
+      border: none;
+    }
 
     &--page {
       column-gap: 10px;
-      padding: 0 5px;
+      padding: 10px 5px;
     }
 
     --cart-row-gap: 5px;
@@ -160,6 +167,9 @@
 }
 
 .price {
+  display: grid;
+  justify-items: flex-end;
+  align-items: flex-start;
   color: $colorOrange;
   font-weight: bold;
 
@@ -168,7 +178,6 @@
   }
 
   &--on-cart {
-    display: grid;
     grid-template-rows: auto 1fr;
     justify-items: flex-end;
     align-items: flex-start;

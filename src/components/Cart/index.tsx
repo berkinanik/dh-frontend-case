@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { Button } from 'components/Button';
 import { Product } from 'components/Product';
+import { useCartContext } from 'context';
 
 import styles from './Cart.module.scss';
 
@@ -12,15 +13,9 @@ interface CartProps {
 }
 
 export const Cart: React.FC<CartProps> = ({ className, onCartPage = false }) => {
-  const cartItems: { id: string; name: string; description: string; price: number }[] = [
-    {
-      id: 'asdf',
-      name: 'Hamburger',
-      description:
-        'Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)Griddle smashed köfte, cheddar peyniri, marul, domates, soğan küpleri (Burger köfteleri, orta pişmiş olarak servis edilmektedir.)',
-      price: 12.5,
-    },
-  ];
+  const {
+    cartState: { address, items: cartItems },
+  } = useCartContext();
   const history = useHistory();
   return (
     <section className={cn(styles.container, className)} id="cart-summary">
@@ -43,7 +38,7 @@ export const Cart: React.FC<CartProps> = ({ className, onCartPage = false }) => 
         )}
       </header>
       <article className={styles.address} id="current-address">
-        Şişli (Esentepe Mah. - Plazalar.)
+        {address}
       </article>
       <article
         className={cn(styles.content, {
@@ -54,8 +49,15 @@ export const Cart: React.FC<CartProps> = ({ className, onCartPage = false }) => 
       >
         {cartItems.length > 0 ? (
           <ul>
-            {cartItems.map((item) => (
-              <Product key={item.id} item={item} onCart onCartPage={onCartPage} />
+            {cartItems.map((item, index) => (
+              <Product
+                key={item.id}
+                item={item}
+                onCart
+                onCartPage={onCartPage}
+                amountOnCart={item.amount}
+                lastItem={index === cartItems.length - 1}
+              />
             ))}
           </ul>
         ) : (
