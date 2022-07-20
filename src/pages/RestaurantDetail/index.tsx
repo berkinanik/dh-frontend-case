@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { Cart } from 'components/Cart';
 import { Product } from 'components/Product';
 import { RestaurantHeader } from 'components/RestaurantHeader';
@@ -6,7 +8,6 @@ import { CartActionTypes, useCartContext } from 'context';
 
 import menuData from 'lib/menuData.json';
 import restaurantData from 'lib/restoranData.json';
-import { useEffect } from 'react';
 
 import styles from './RestaurantDetail.module.scss';
 
@@ -25,7 +26,7 @@ export const RestaurantDetail: React.FC = () => {
         address: dummySelectedAddress.AreaName,
       },
     });
-  });
+  }, [cartDispatch, dummySelectedAddress.AreaName, restaurant.DisplayName]);
 
   return (
     <Wrapper id="restaurant-detail-wrapper" className={styles.container}>

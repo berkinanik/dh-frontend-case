@@ -1,10 +1,10 @@
 import cn from 'classnames';
-import React, { useId, useRef, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 
 import { Button } from 'components/Button';
-import { Dropdown } from 'components/Dropdown';
 import { formatMoney } from 'utils';
 import { CartActionTypes, useCartContext } from 'context';
+import { Dropdown, DropdownHandle } from 'components/Dropdown';
 import { ProductList, ProductListProps } from './ProductList';
 
 import styles from './Product.module.scss';
@@ -44,46 +44,59 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
   const { cartDispatch } = useCartContext();
   const [orderAmount, setOrderAmount] = useState(1);
   const formId = useId();
+  const inputId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
+  const dropdownRef = useRef<DropdownHandle>(null);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    handleCartAction(e, 'add');
     setOrderAmount(1);
     inputRef.current?.blur();
-    cartDispatch({
-      type: CartActionTypes.ADD_ITEM,
-      payload: {
-        id,
-        name,
-        description,
-        price,
-        amount: orderAmount,
-      },
-    });
   };
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onOrderAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOrderAmount(parseInt(e.target.value) || 1);
   };
 
-  const onRemove = (e: React.MouseEvent<HTMLButtonElement>, removeAll = false) => {
+  const handleCartAction = (
+    e: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLFormElement>,
+    type: 'remove' | 'add' | 'clear'
+  ) => {
     e.preventDefault();
-    if (removeAll) {
-      cartDispatch({
-        type: CartActionTypes.REMOVE_ITEM_COMPLETELY,
-        payload: {
-          id,
-        },
-      });
-    } else {
-      cartDispatch({
-        type: CartActionTypes.REMOVE_ITEM,
-        payload: {
-          id,
-          amount: orderAmount,
-        },
-      });
+    switch (type) {
+      case 'add':
+        cartDispatch({
+          type: CartActionTypes.ADD_ITEM,
+          payload: {
+            id,
+            name,
+            description,
+            price,
+            amount: orderAmount,
+          },
+        });
+        break;
+      case 'remove':
+        cartDispatch({
+          type: CartActionTypes.REMOVE_ITEM,
+          payload: {
+            id,
+            amount: orderAmount,
+          },
+        });
+        break;
+      case 'clear':
+        cartDispatch({
+          type: CartActionTypes.REMOVE_ITEM_COMPLETELY,
+          payload: {
+            id,
+          },
+        });
+        break;
+      default:
+        break;
     }
+    dropdownRef.current?.close();
   };
 
   return (
@@ -104,15 +117,18 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
           <span className={styles.amount}>x{amountOnCart}</span>
         ) : (
           <form className={styles.actions} onSubmit={onSubmit} id={formId}>
+            <label htmlFor={inputId} hidden>
+              {name} adedi
+            </label>
             <input
               ref={inputRef}
               className={styles.actions__input}
               type="number"
               min={1}
               max={99}
-              id={formId + 'amount'}
+              id={inputId}
               value={orderAmount}
-              onChange={onChange}
+              onChange={onOrderAmountChange}
             />
             <Button
               className={styles.actions__button}
@@ -130,12 +146,15 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
             [styles.info + '--on-cart--page']: onCartPage,
           })}
         >
-          <span className={styles.info__name}>{name}</span>
+          <span className={styles.info__name} title={name}>
+            {name}
+          </span>
           {onCart && (
             <Dropdown
               className={cn(styles['cart-actions__container'], {
                 [styles['cart-actions__container--on-page']]: onCartPage,
               })}
+              ref={dropdownRef}
               summary={
                 <img src="icons/edit.svg" width={onCartPage ? 20 : 12} height={onCartPage ? 20 : 12} alt="Edit Icon" />
               }
@@ -146,19 +165,22 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
                     mode="secondary"
                     type="button"
                     title={`Sepetten Çıkar: ${name.substring(0, 20)} (${orderAmount} adet)`}
-                    onClick={onRemove}
+                    onClick={(e) => handleCartAction(e, 'remove')}
                   >
                     -
                   </Button>
+                  <label htmlFor={inputId} hidden>
+                    sepet {name} adedi
+                  </label>
                   <input
                     ref={inputRef}
                     className={styles.actions__input}
                     type="number"
                     min={1}
                     max={99}
-                    id={formId + 'amount'}
+                    id={inputId}
                     value={orderAmount}
-                    onChange={onChange}
+                    onChange={onOrderAmountChange}
                   />
                   <Button
                     className={styles.actions__button}
@@ -172,7 +194,7 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
                     className={styles['cart-actions__remove-all']}
                     type="button"
                     mode="text"
-                    onClick={(e) => onRemove(e, true)}
+                    onClick={(e) => handleCartAction(e, 'clear')}
                     title={`Sepetten Kaldır: ${name.substring(0, 20)}`}
                   >
                     Sepetten Kaldır

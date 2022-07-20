@@ -1,7 +1,7 @@
 import { CartActionTypes, CartState, CartAction } from 'context/types';
 
 export const cartReducer = (state: CartState, action: CartAction): CartState => {
-  let cartItems = state.items;
+  let cartItems = state.cartItems;
   let cartTotal = state.cartTotal;
   switch (action.type) {
     case CartActionTypes.ADD_ITEM:
@@ -11,7 +11,7 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
           cartTotal += action.payload.amount * cartItems[i].price;
           return {
             ...state,
-            items: cartItems,
+            cartItems,
             cartTotal,
           };
         }
@@ -20,7 +20,7 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
       cartTotal += action.payload.amount * action.payload.price;
       return {
         ...state,
-        items: cartItems,
+        cartItems,
         cartTotal,
       };
     case CartActionTypes.REMOVE_ITEM:
@@ -36,7 +36,7 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
           }
           return {
             ...state,
-            items: cartItems,
+            cartItems,
             cartTotal,
           };
         }
@@ -49,7 +49,7 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
           cartItems = cartItems.filter((item) => item.id !== action.payload.id);
           return {
             ...state,
-            items: cartItems,
+            cartItems,
             cartTotal,
           };
         }
@@ -60,6 +60,12 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
         ...state,
         restaurant: action.payload.restaurant,
         address: action.payload.address,
+      };
+    case CartActionTypes.CLEAR_CART:
+      return {
+        ...state,
+        cartTotal: 0,
+        cartItems: [],
       };
     default:
       return state;

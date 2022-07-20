@@ -1,7 +1,7 @@
 export interface CartState {
   restaurant: string | null;
   address: string | null;
-  items: {
+  cartItems: {
     id: string;
     amount: number;
     name: string;
@@ -16,6 +16,7 @@ export enum CartActionTypes {
   REMOVE_ITEM = 'REMOVE_ITEM',
   REMOVE_ITEM_COMPLETELY = 'REMOVE_ITEM_COMPLETELY',
   SET_INITIAL_RESTAURANT_DATA = 'SET_INITIAL_RESTAURANT_DATA',
+  CLEAR_CART = 'CLEAR_CART',
 }
 
 interface AddItemAction {
@@ -52,4 +53,13 @@ interface SetRestaurantDataAction {
   };
 }
 
-export type CartAction = AddItemAction | RemoveItemAction | RemoveItemCompletelyAction | SetRestaurantDataAction;
+interface ClearCartAction {
+  type: CartActionTypes.CLEAR_CART;
+}
+
+export type CartAction =
+  | AddItemAction
+  | RemoveItemAction
+  | RemoveItemCompletelyAction
+  | SetRestaurantDataAction
+  | ClearCartAction;

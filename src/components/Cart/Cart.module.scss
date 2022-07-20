@@ -47,11 +47,21 @@
   text-overflow: ellipsis;
 }
 
+.restaurant {
+  font-size: 12px;
+  padding: $cardPadding;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid $colorBorder;
+}
+
 .content {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
   padding: 10px $cardPadding;
+  overflow-x: visible;
 
   &--empty {
     padding: 21px $cardPadding;
@@ -67,5 +77,34 @@
   &__empty {
     font-size: 12px;
     font-weight: bold;
+  }
+}
+
+.total {
+  width: 100%;
+  padding: 10px $cardPadding 15px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: space-between;
+  row-gap: 10px;
+  border-top: 2px solid $colorBorder;
+
+  &__text {
+    color: $colorText;
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  &__price {
+    color: $colorOrange;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  &__clear {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    color: $colorText;
+    font-size: $baseFontSize;
   }
 }

@@ -2,8 +2,9 @@ import cn from 'classnames';
 import { Link, useHistory } from 'react-router-dom';
 
 import { Button } from 'components/Button';
+import { formatMoney } from 'utils';
 import { Product } from 'components/Product';
-import { useCartContext } from 'context';
+import { CartActionTypes, useCartContext } from 'context';
 
 import styles from './Cart.module.scss';
 
@@ -14,9 +15,18 @@ interface CartProps {
 
 export const Cart: React.FC<CartProps> = ({ className, onCartPage = false }) => {
   const {
-    cartState: { address, items: cartItems },
+    cartState: { address, cartItems, cartTotal, restaurant },
+    cartDispatch,
   } = useCartContext();
   const history = useHistory();
+
+  const onClear = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    cartDispatch({
+      type: CartActionTypes.CLEAR_CART,
+    });
+  };
+
   return (
     <section className={cn(styles.container, className)} id="cart-summary">
       <header
@@ -26,20 +36,32 @@ export const Cart: React.FC<CartProps> = ({ className, onCartPage = false }) => 
       >
         {onCartPage ? (
           <>
-            <Button className={styles.header__back} type="button" onClick={() => history.goBack()} mode="text">
+            <Button
+              className={styles.header__back}
+              type="button"
+              onClick={() => history.goBack()}
+              mode="text"
+              title="Restoran Sayfasına Dön"
+            >
               {'<'} Geri
             </Button>
             <h1 className={styles.header__label}>YEMEK SEPETİM</h1>
           </>
         ) : (
-          <Link to="/sepet" className={cn(styles.header__label, styles.header__label + '--link')}>
+          <Link to="/sepet" className={cn(styles.header__label, styles.header__label + '--link')} title="Sepete Git">
             YEMEK SEPETİM
           </Link>
         )}
       </header>
-      <article className={styles.address} id="current-address">
+      <article className={styles.address} id="current-address" title={address ?? ''}>
+        {onCartPage && 'Seçili Adres: '}
         {address}
       </article>
+      {onCartPage && (
+        <article className={styles.restaurant} id="current-restaurant" title={restaurant ?? ''}>
+          Restoran: {restaurant}
+        </article>
+      )}
       <article
         className={cn(styles.content, {
           [styles.content + '--empty']: cartItems.length === 0,
@@ -67,6 +89,21 @@ export const Cart: React.FC<CartProps> = ({ className, onCartPage = false }) => 
           </>
         )}
       </article>
+      {cartItems.length > 0 && (
+        <article className={styles.total} id="cart-total">
+          <span className={styles.total__text}>Sepet Toplamı: </span>
+          <span className={styles.total__price}>{formatMoney(cartTotal)}</span>
+          <Button
+            className={styles.total__clear}
+            type="button"
+            mode="text"
+            onClick={onClear}
+            title="Sepetten Tüm Ürünleri Kaldır"
+          >
+            Sepeti Temizle
+          </Button>
+        </article>
+      )}
     </section>
   );
 };

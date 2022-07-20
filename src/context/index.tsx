@@ -8,7 +8,7 @@ export { CartActionTypes } from './types';
 const initialCartState: CartState = {
   restaurant: null,
   address: null,
-  items: [],
+  cartItems: [],
   cartTotal: 0,
 };
 
