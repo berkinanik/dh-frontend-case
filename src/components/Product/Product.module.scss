@@ -28,6 +28,10 @@
     &--page {
       column-gap: 10px;
       padding: 10px 5px;
+
+      @include phone {
+        column-gap: 5px;
+      }
     }
 
     --cart-row-gap: 5px;
@@ -117,6 +121,10 @@
       grid-template-areas: 'title cart-action' 'description cart-action';
       column-gap: 10px;
       row-gap: var(--cart-row-gap-on-page);
+
+      @include phone {
+        column-gap: 5px;
+      }
     }
   }
 
@@ -139,7 +147,7 @@
 }
 
 .cart-actions {
-  padding: $cardPadding 20px;
+  padding: 15px 25px;
   background: $colorBackground;
   border-radius: 8px;
   display: grid;
@@ -164,6 +172,18 @@
     grid-column-start: 1;
     grid-column-end: 4;
     font-size: $baseFontSize;
+  }
+
+  &__close {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    color: $colorText;
+    font-size: 12px;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 
@@ -190,6 +210,10 @@
       height: 100%;
       row-gap: var(--cart-row-gap-on-page);
       min-width: 80px;
+
+      @include phone {
+        min-width: 60px;
+      }
     }
   }
 

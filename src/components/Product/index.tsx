@@ -98,7 +98,6 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
       default:
         break;
     }
-    dropdownRef.current?.close();
   };
 
   return (
@@ -178,11 +177,9 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
                     ref={inputRef}
                     className={styles.actions__input}
                     type="number"
-                    min={1}
-                    max={99}
                     id={inputId}
-                    value={orderAmount}
-                    onChange={onOrderAmountChange}
+                    value={amountOnCart}
+                    disabled
                   />
                   <Button
                     className={styles.actions__button}
@@ -200,6 +197,17 @@ const Product: React.FC<ProductProps> & ProductSubComponents = ({
                     title={`Sepetten Kaldır: ${name.substring(0, 20)}`}
                   >
                     Sepetten Kaldır
+                  </Button>
+                  <Button
+                    className={styles['cart-actions__close']}
+                    type="button"
+                    mode="text"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dropdownRef.current?.close();
+                    }}
+                  >
+                    x
                   </Button>
                 </form>
               }
