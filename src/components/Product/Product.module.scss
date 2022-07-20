@@ -128,6 +128,7 @@
   &--on-cart--page &__name {
     color: $colorOrange;
     font-weight: bold;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -183,10 +184,12 @@
     align-items: flex-start;
     grid-template-columns: auto;
     row-gap: var(--cart-row-gap);
+    min-width: 65px;
 
     &--page {
       height: 100%;
       row-gap: var(--cart-row-gap-on-page);
+      min-width: 80px;
     }
   }
 

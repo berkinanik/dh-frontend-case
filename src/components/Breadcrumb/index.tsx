@@ -17,9 +17,9 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
             <Fragment key={item}>
               <li className={cn(styles.item, styles.item__text)}>{item}</li>
               {moreThanOneItem && index < items.length - 1 && (
-                <span className={styles.item} key={`${item}-separator`}>
+                <li className={styles.item} key={`${item}-separator`}>
                   {'>'}
-                </span>
+                </li>
               )}
             </Fragment>
           );

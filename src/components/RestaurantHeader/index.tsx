@@ -34,18 +34,23 @@ export const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({
           <h1 className={styles.details__info__name}>{name + ' (' + address + ')'}</h1>
           <div className={styles.details__info__badges}>
             <div className={styles.details__info__badges__points}>
-              <Badge mode="default" icon="icons/super-delivery.svg" />
+              <Badge mode="default" icon={{ src: 'icons/super-delivery.svg', width: 28, height: 31 }} />
               <Badge mode="point" value={speed.toFixed(1).replace('.', ',')} badgeText="Hız" />
               <Badge mode="point" value={serving.toFixed(1).replace('.', ',')} badgeText="Servis" />
               <Badge mode="point" value={flavour.toFixed(1).replace('.', ',')} badgeText="Lezzet" />
             </div>
             <div className={styles.details__info__badges__delivery}>
-              <Badge mode="info" value={formatMoney(minimumPrice)} badgeText="Min. Tutar" icon="icons/min-amount.svg" />
+              <Badge
+                mode="info"
+                value={formatMoney(minimumPrice)}
+                badgeText="Min. Tutar"
+                icon={{ src: 'icons/min-amount.svg', width: 16, height: 13 }}
+              />
               <Badge
                 mode="info"
                 value={deliveryTime.toFixed(2).replace('.', ',') + ' dk.'}
                 badgeText="Servis Süresi"
-                icon="icons/delivery.svg"
+                icon={{ src: 'icons/delivery.svg', width: 19, height: 13 }}
               />
             </div>
           </div>

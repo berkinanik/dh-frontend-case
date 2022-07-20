@@ -11,7 +11,7 @@ export const ProductList: React.FC<ProductListProps> = ({ children, title }) => 
   return (
     <article className={styles.container}>
       <header className={styles.title}>{title}</header>
-      {children}
+      <ul>{children}</ul>
     </article>
   );
 };
