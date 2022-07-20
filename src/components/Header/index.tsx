@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { formatMoney } from 'utils';
 import { useCartContext } from 'context';
+
+import { formatMoney } from 'utils';
 import { Wrapper } from 'layouts/Wrapper';
 
 import styles from './Header.module.scss';

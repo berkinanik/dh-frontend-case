@@ -1,10 +1,12 @@
 import cn from 'classnames';
 import { Link, useHistory } from 'react-router-dom';
 
+import { CartActionTypes } from 'context/types';
+import { useCartContext } from 'context';
+
 import { Button } from 'components/Button';
 import { formatMoney } from 'utils';
 import { Product } from 'components/Product';
-import { CartActionTypes, useCartContext } from 'context';
 
 import styles from './Cart.module.scss';
 

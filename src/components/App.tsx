@@ -1,5 +1,6 @@
-import { CartContextProvider } from 'context';
 import { HashRouter } from 'react-router-dom';
+
+import { CartContextProvider } from 'context';
 
 import Routes from 'routes';
 

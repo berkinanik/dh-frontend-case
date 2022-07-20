@@ -1,9 +1,11 @@
 import cn from 'classnames';
 import { useId, useRef, useState } from 'react';
 
+import { CartActionTypes } from 'context/types';
+import { useCartContext } from 'context';
+
 import { Button } from 'components/Button';
 import { formatMoney } from 'utils';
-import { CartActionTypes, useCartContext } from 'context';
 import { Dropdown, DropdownHandle } from 'components/Dropdown';
 import { ProductList, ProductListProps } from './ProductList';
 
