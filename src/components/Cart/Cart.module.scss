@@ -1,0 +1,110 @@
+.container {
+  border: 1px solid $colorBorder;
+  border-radius: 0 0 $borderRadius $borderRadius;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  background: $colorDarkRed;
+
+  &--on-page {
+    padding: $cardPadding;
+  }
+
+  &__label {
+    color: $colorWhite;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+
+    &--link {
+      font-size: 12px;
+      text-align: unset;
+      padding: $cardPadding;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__back {
+    font-size: 12px;
+    position: absolute;
+  }
+}
+
+.address {
+  font-size: 12px;
+  background: $colorYellow;
+  padding: $cardPadding;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.restaurant {
+  font-size: 12px;
+  padding: $cardPadding;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid $colorBorder;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  padding: 10px $cardPadding;
+  overflow-x: visible;
+
+  &--empty {
+    padding: 21px $cardPadding;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &--on-page {
+    justify-content: center;
+  }
+
+  &__empty {
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+
+.total {
+  width: 100%;
+  padding: 10px $cardPadding 15px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: space-between;
+  row-gap: 10px;
+  border-top: 2px solid $colorBorder;
+
+  &__text {
+    color: $colorText;
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  &__price {
+    color: $colorOrange;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  &__clear {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    color: $colorText;
+    font-size: $baseFontSize;
+  }
+}

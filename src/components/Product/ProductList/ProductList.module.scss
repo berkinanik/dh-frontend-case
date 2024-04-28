@@ -1,0 +1,13 @@
+.container {
+  background: $colorBackground;
+  overflow: hidden;
+  border: 1px solid $colorBorder;
+  border-radius: 2px;
+}
+
+.title {
+  font-size: 16px;
+  color: $colorText;
+  font-weight: bold;
+  padding: $cardPadding 15px;
+}

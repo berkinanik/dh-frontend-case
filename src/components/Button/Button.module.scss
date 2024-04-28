@@ -1,0 +1,44 @@
+.button {
+  white-space: nowrap;
+  line-height: 1;
+  text-align: center;
+  font-weight: 600;
+
+  &--l {
+    padding: 3px 5px;
+    font-size: 18px;
+    border-radius: 3px;
+  }
+
+  &--m {
+    padding: 2px 3px;
+    font-size: 16px;
+    border-radius: 2px;
+  }
+
+  &--primary {
+    background: $colorGreen;
+    color: $colorWhite;
+    border: none;
+  }
+
+  &--secondary {
+    background: $colorGray;
+    color: $colorText;
+  }
+
+  &--outlined {
+    background: none;
+    color: $colorText;
+    border: 2px solid $colorBorder;
+  }
+
+  &--text {
+    background: none;
+    color: $colorWhite;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

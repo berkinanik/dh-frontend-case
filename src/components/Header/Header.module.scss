@@ -1,0 +1,44 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  background-color: $colorRed;
+}
+
+.container {
+  height: $headerHeight;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
+  align-items: center;
+  justify-content: space-between;
+
+  @include phone {
+    height: 40px;
+  }
+}
+
+.logo {
+  height: 42px;
+  width: auto;
+
+  @include phone {
+    height: 24px;
+  }
+}
+
+.cart {
+  color: $colorWhite;
+  font-size: 12px;
+  font-weight: 600;
+  float: right;
+
+  @include tablet {
+    font-size: 16px;
+  }
+
+  @include desktop {
+    display: none;
+  }
+}

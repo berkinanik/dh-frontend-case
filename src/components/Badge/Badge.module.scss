@@ -1,0 +1,69 @@
+.badge {
+  display: flex;
+  overflow: hidden;
+  height: 46px;
+  white-space: nowrap;
+
+  &--default {
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    padding: 4px;
+    border: 1px solid $colorOrange;
+    border-radius: 2px;
+  }
+
+  &--point {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 2px;
+    padding: 4px 0;
+    width: 41px;
+    background-color: $colorLightGreen;
+    color: $colorWhite;
+  }
+
+  &--info {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+
+  &__point {
+    &__value {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    &__label {
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+
+  &__default {
+    &__icon {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__info {
+    &__icon {
+      height: 13px;
+      object-fit: contain;
+    }
+
+    &__label {
+      font-size: 10px;
+    }
+    &__value {
+      font-size: 10px;
+      font-weight: bold;
+    }
+  }
+}
